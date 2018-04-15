@@ -1,0 +1,88 @@
+<%= render 'header'%>
+<%= render 'slide'%>
+
+<div class='wrapper wrapper-content animated fadeInRight"'>
+  <div class='row'>
+    <div class='col-md-9'>
+      <div class='ibox'><div class='ibox-title'><h5>For some new</h5></div>
+        <div class='ibox-content'>
+          <div class="">
+            <div id="summary">
+              <p class="collapse show" id="collapseSummary" style="">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc porttitor maximus laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In hac habitasse platea dictumst. Suspendisse venenatis sollicitudin erat in gravida. Sed eget nisl tristique, commodo lectus sit amet, vulputate sem. Cras porttitor lorem ipsum, sit amet iaculis massa feugiat vitae. Curabitur sapien odio, ullamcorper tincidunt interdum vitae, vestibulum eu neque. Nam leo massa, fringilla eget mauris feugiat, auctor suscipit justo.
+              </p>
+              <a class="" data-toggle="collapse" href="#collapseSummary" aria-expanded="true" aria-controls="collapseSummary"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-3'>
+      <div class='ibox'><div class='ibox-title'><h5>For some new</h5></div></div>
+    </div>
+  </div>
+</div>
+<%= render 'footer'%>
+
+
+
+
+<% content_for :javascript do %>
+<script type="text/javascript">
+
+$(function() {
+
+    $('body').addClass('landing-page');
+    $('body').attr('id', 'page-top');
+
+    $('body').scrollspy({
+        target: '.navbar-fixed-top',
+        offset: 80
+    });
+
+    // Page scrolling feature
+    $('a.page-scroll').bind('click', function(event) {
+        var link = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $(link.attr('href')).offset().top - 50
+        }, 500);
+        event.preventDefault();
+        $("#navbar").collapse('hide');
+    });
+
+    var cbpAnimatedHeader = (function() {
+        var docElem = document.documentElement,
+                header = document.querySelector( '.navbar-default' ),
+                didScroll = false,
+                changeHeaderOn = 200;
+        function init() {
+            window.addEventListener( 'scroll', function( event ) {
+                if( !didScroll ) {
+                    didScroll = true;
+                    setTimeout( scrollPage, 250 );
+                }
+            }, false );
+        }
+        function scrollPage() {
+            var sy = scrollY();
+            if ( sy >= changeHeaderOn ) {
+                $(header).addClass('navbar-scroll')
+            }
+            else {
+                $(header).removeClass('navbar-scroll')
+            }
+            didScroll = false;
+        }
+        function scrollY() {
+            return window.pageYOffset || docElem.scrollTop;
+        }
+        init();
+
+    })();
+
+
+});
+
+</script>
+
+<% end %>
